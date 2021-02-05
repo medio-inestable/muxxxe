@@ -129,9 +129,10 @@ nodes/strafe/node = SubResource( 21 )
 nodes/strafe/position = Vector2( 0, 120 )
 nodes/walk_scale/node = SubResource( 22 )
 nodes/walk_scale/position = Vector2( 100, 400 )
-node_connections = [ "output", 0, "roll", "run_scale", 0, "Animation 3", "roll_scale", 0, "Animation 4", "TimeScale", 0, "strafe", "iwr_blend", 0, "Animation", "iwr_blend", 1, "walk_scale", "iwr_blend", 2, "run_scale", "aim_transition", 0, "TimeScale", "aim_transition", 1, "iwr_blend", "walk_scale", 0, "Animation 2", "roll", 0, "aim_transition", "roll", 1, "roll_scale" ]
+node_connections = [ "output", 0, "roll", "roll", 0, "aim_transition", "roll", 1, "roll_scale", "walk_scale", 0, "Animation 2", "TimeScale", 0, "strafe", "run_scale", 0, "Animation 3", "aim_transition", 0, "TimeScale", "aim_transition", 1, "iwr_blend", "iwr_blend", 0, "Animation", "iwr_blend", 1, "walk_scale", "iwr_blend", 2, "run_scale", "roll_scale", 0, "Animation 4" ]
 
 [node name="Player" type="KinematicBody"]
+collision_layer = 2
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
@@ -139,7 +140,6 @@ __meta__ = {
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766839, 0 )
-visible = false
 shape = SubResource( 1 )
 
 [node name="Mesh" type="Spatial" parent="."]

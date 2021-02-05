@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Platica_script.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Textos_scripts/Texto_vende.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Objeto_texto.gd" type="Script" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="CylinderShape" id=3]
+height = 0.900984
+
+[node name="Platica_escena" type="Spatial"]
+
+[node name="VendeTickets" type="MeshInstance" parent="."]
+transform = Transform( 0.35, 0, 0, 0, 0.604985, 0, 0, 0, 0.36, 0, 0.599386, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+script = ExtResource( 1 )
+texto_canvas_path = NodePath("../Objeto_texto")
+
+[node name="Caja" type="StaticBody" parent="VendeTickets"]
+
+[node name="CollisionShape" type="CollisionShape" parent="VendeTickets/Caja"]
+shape = SubResource( 2 )
+
+[node name="Area" type="Area" parent="VendeTickets"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="VendeTickets/Area"]
+transform = Transform( 3.42971, 0, 0, 0, 1, 0, 0, 0, 3.42971, 0, -0.199307, 0 )
+shape = SubResource( 3 )
+
+[node name="Luces" type="Spatial" parent="."]
+
+[node name="OmniLight" type="OmniLight" parent="Luces"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44262, 0 )
+light_color = Color( 0.870588, 0.172549, 0.0352941, 1 )
+shadow_enabled = true
+omni_range = 1.20276
+omni_attenuation = 2.46229
+
+[node name="OmniLight2" type="OmniLight" parent="Luces"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74577, 0.325837, 0.684915 )
+light_color = Color( 0.870588, 0.172549, 0.0352941, 1 )
+light_energy = 0.68
+shadow_enabled = true
+omni_range = 0.721155
+omni_attenuation = 2.54912
+
+[node name="OmniLight3" type="OmniLight" parent="Luces"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0812703, 0.395044, 0.916917 )
+light_color = Color( 0.870588, 0.172549, 0.0352941, 1 )
+light_energy = 0.68
+shadow_enabled = true
+omni_range = 0.737998
+omni_attenuation = 2.2974
+
+[node name="OmniLight4" type="OmniLight" parent="Luces"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.616168, 0.311567, 0.696672 )
+light_color = Color( 0.870588, 0.172549, 0.0352941, 1 )
+light_energy = 0.68
+shadow_enabled = true
+omni_range = 0.755616
+omni_attenuation = 2.63902
+
+[node name="Objeto_texto" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+texto_select_path = NodePath("../Texto_vende")
+
+[node name="ColorRect" type="ColorRect" parent="Objeto_texto"]
+margin_left = 325.874
+margin_top = 454.027
+margin_right = 963.874
+margin_bottom = 646.027
+color = Color( 0.72549, 0.94902, 0.807843, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Objeto_texto"]
+margin_left = 369.0
+margin_top = 484.0
+margin_right = 925.0
+margin_bottom = 612.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+text = "Aqui el texto pana"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texto_vende" type="Node" parent="."]
+script = ExtResource( 2 )
+[connection signal="body_entered" from="VendeTickets/Area" to="VendeTickets" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="VendeTickets/Area" to="VendeTickets" method="_on_Area_body_exited"]
